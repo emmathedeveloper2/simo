@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+* {
+  /* padding: 0;
+  margin: 0; */
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: 'Depature Mono';
+  src: url('/fonts/DepartureMono-Regular.otf') format('opentype');
+}
+
+body,
+html,
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  background: linear-gradient(180deg, #02000d 0%, #040019 100%);
+  font-family: "Commit Mono", monospace;
+  color: white;
+}
+.font-depature-mono {
+  font-family: 'Depature Mono';
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
