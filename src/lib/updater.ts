@@ -3,7 +3,7 @@ import { ask, message } from "@tauri-apps/plugin-dialog";
 
 export default async function checkForAppUpdates(onUserClick: boolean) {
   const update = await check();
-  if (update === null) {
+  if (update === null && onUserClick) {
     await message("There are no new updates available.", {
       title: "No Update Available",
       kind: "info",
@@ -23,11 +23,5 @@ export default async function checkForAppUpdates(onUserClick: boolean) {
     if (yes) {
       await update.downloadAndInstall();
     }
-  } else if (onUserClick) {
-    await message("You are on the latest version. Stay awesome!", {
-      title: "No Update Available",
-      kind: "info",
-      okLabel: "OK",
-    });
   }
 }
