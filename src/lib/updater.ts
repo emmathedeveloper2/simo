@@ -1,5 +1,5 @@
 import { check } from "@tauri-apps/plugin-updater";
-import { ask, message } from "@tauri-apps/plugin-dialog";
+import { ask } from "@tauri-apps/plugin-dialog";
 
 export default async function checkForAppUpdates() {
   const update = await check();
