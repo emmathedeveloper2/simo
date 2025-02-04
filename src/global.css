@@ -30,3 +30,7 @@ body {
 ::-webkit-scrollbar {
   display: none;
 }
+
+.shadow-text {
+  text-shadow: 0px 0px 10px white;
+}

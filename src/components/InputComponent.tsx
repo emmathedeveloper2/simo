@@ -26,14 +26,10 @@ function InputComponent() {
             message.length < 1 &&
             <div className='absolute top-0 left-0 -z-10 pointer-events-none flex items-center text-white/50 px-4 size-full'>
               <p>
-                Message <span className='relative z-0'>
-                  <span className='text-white blur-[3px] absolute -z-10 opacity-40'>
-                    SIMO
+                Message
+                  <span className='text-white shadow-text animate-pulse ml-1'>
+                     SIMO
                   </span>
-                  <span className='text-white'>
-                    SIMO
-                  </span>
-                </span>
                 ...
               </p>
             </div>

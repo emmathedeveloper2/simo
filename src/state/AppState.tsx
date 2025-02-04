@@ -34,13 +34,10 @@ export const useAppStore = create<AppState>((set, get) => ({
     try {
       const response = await fetch('http://localhost:11434/api/tags' , {
         method: 'GET',
-        
         headers: {
           'Content-Type': 'application/json',
         },
       })
-
-      console.log(response.statusText)
       
       const data = (await response.json() as any).models
       

@@ -3,14 +3,8 @@ import { ask, message } from "@tauri-apps/plugin-dialog";
 
 export default async function checkForAppUpdates() {
   const update = await check();
-  if (update === null) {
-    await message("There are no new updates available.", {
-      title: "No Update Available",
-      kind: "info",
-      okLabel: "OK",
-    });
-    return;
-  } else if (update?.available) {
+
+  if (update !== null && update?.available) {
     const yes = await ask(
       `Update to ${update.version} is available!\n\nRelease notes: ${update.body}`,
       {
