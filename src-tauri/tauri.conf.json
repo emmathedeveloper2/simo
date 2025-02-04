@@ -41,6 +41,11 @@
       "endpoints": [
         "https://github.com/emmathedeveloper2/simo/releases/latest/download/latest.json"
       ]
+    },
+    "http": {
+      "all": true,
+      "request": true,
+      "scope": ["https://*.tauri.app", "http://localhost:*/*"]
     }
   }
 }
