@@ -32,7 +32,10 @@ export const useAppStore = create<AppState>((set, get) => ({
     const { setModels , setCurrentModelId } = get()
 
     try {
-      const response = await fetch('http://localhost:11434/api/tags')
+      const response = await fetch('http://localhost:11434/api/tags' , {
+        method: 'GET',
+      })
+      
       const data = (await response.json() as any).models
       
       setModels(data)

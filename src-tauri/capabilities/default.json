@@ -9,10 +9,13 @@
     "dialog:default",
     "dialog:allow-ask",
     "dialog:allow-message",
+    "http:allow-fetch",
+    "http:deny-fetch-cancel",
+    "http:allow-fetch-read-body",
+    "http:allow-fetch-send",
     {
       "identifier": "http:default",
-      "allow": [{ "url": "https://*.tauri.app" } , { "url": "http://localhost:11434/*" }],
-      "deny": [{ "url": "https://private.tauri.app" }]
+      "allow": [{ "url": "https://*.tauri.app" } , { "url": "http://localhost:11434/*" }]
     }
   ]
 }
