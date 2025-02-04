@@ -2,6 +2,7 @@ import { create } from 'zustand'
 import { MessageItem } from "../lib/types"
 import { LanguageModelV1, streamText } from 'ai'
 import { ollama } from 'ollama-ai-provider'
+import { fetch } from '@tauri-apps/plugin-http'
 
 interface AppState {
   models: any[]
