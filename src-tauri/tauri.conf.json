@@ -1,7 +1,7 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
   "productName": "simo",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "identifier": "com.simo.app",
   "build": {
     "beforeDevCommand": "bun run dev",
@@ -41,11 +41,6 @@
       "endpoints": [
         "https://github.com/emmathedeveloper2/simo/releases/latest/download/latest.json"
       ]
-    },
-    "http": {
-      "all": true,
-      "request": true,
-      "scope": ["https://*.tauri.app", "http://localhost:*/*"]
     }
   }
 }
