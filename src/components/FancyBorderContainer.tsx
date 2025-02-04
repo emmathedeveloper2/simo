@@ -2,12 +2,13 @@ type FancyBorderContainerProps = {
     children?: any,
     className?: string,
     showFancyBorder?: boolean,
-    radialType?: 'white' | 'purple' | 'none'
+    radialType?: 'white' | 'purple' | 'none',
+    onClick?: () => void
 }
 
-const FancyBorderContainer = ({ children, className, showFancyBorder = true, radialType = 'none' }: FancyBorderContainerProps) => {
+const FancyBorderContainer = ({ children, className, showFancyBorder = true, radialType = 'none' , onClick }: FancyBorderContainerProps) => {
     return (
-        <div className={`relative z-0 ${className}`}>
+        <div onClick={onClick} className={`relative z-0 ${className}`}>
 
             {
                 showFancyBorder &&

@@ -25,7 +25,7 @@ const ChatViewContainer = () => {
                         {
                             item.role === 'user' ?
                             <div className='w-full flex justify-end' key={_}>
-                                <p>{item.content}</p>
+                                <p className="shadow-text">{item.content}</p>
                             </div>
                             :
                             <div className='w-full flex justify-start' key={_}>
