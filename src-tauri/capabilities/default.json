@@ -6,6 +6,9 @@
   "permissions": [
     "core:default",
     "opener:default",
+    "dialog:default",
+    "dialog:allow-ask",
+    "dialog:allow-message",
     {
       "identifier": "http:default",
       "allow": [{ "url": "https://*.tauri.app" } , { "url": "http://localhost:11434/*" }],
