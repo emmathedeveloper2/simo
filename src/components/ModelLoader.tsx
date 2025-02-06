@@ -21,6 +21,12 @@ const ModelLoader = ({ children }: { children: React.ReactNode }) => {
     try {
       await invoke('start_ollama')
 
+      setModelState('CONNECTING')
+
+      await fetchModels()
+
+      await sleep()
+
       setModelState('SUCCESS')
     } catch (error) {
       if (error === 'ALREADY_RUNNING') {
@@ -54,7 +60,7 @@ const ModelLoader = ({ children }: { children: React.ReactNode }) => {
           <h1 className="text-3xl">Oop's something went wrong</h1>
           <p>Couldn't load ollama</p>
 
-          <FancyBorderContainer onClick={load_llama}>
+          <FancyBorderContainer onClick={load_llama} className="p-4">
             <p>Try Again</p>
           </FancyBorderContainer>
         </div>
