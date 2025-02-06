@@ -46,7 +46,7 @@ export const useAppStore = create<AppState>((set, get) => ({
       setCurrentModelId(data[0]?.name ?? '')
 
     } catch (error) {
-      console.error('Failed to fetch models', error)
+      throw new Error('CONNECTION ERROR')
     }
   },
 
