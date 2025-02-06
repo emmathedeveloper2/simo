@@ -50,7 +50,7 @@ const ModelLoader = ({ children }: { children: React.ReactNode }) => {
       {(modelState === 'SUCCESS' || modelState === 'ALREADY_RUNNING') && children}
       {
         (modelState === 'ERROR' || modelState === 'CONNECTION_ERROR') &&
-        <div className="size-full flex items-center justify-center gap-2">
+        <div className="size-full flex flex-col items-center justify-center gap-4">
           <h1 className="text-3xl">Oop's something went wrong</h1>
           <p>Couldn't load ollama</p>
 
