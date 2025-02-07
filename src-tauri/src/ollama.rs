@@ -1,5 +1,5 @@
 use std::{
-    process::{Child, Command},
+    process::{Child, Command , Stdio},
     sync::Mutex,
 };
 
@@ -22,6 +22,7 @@ pub fn start_ollama(state: State<OllamaProcessState>) -> Result<String, String> 
     let child = Command::new("ollama")
         .arg("serve")
         .env("OLLAMA_ORIGINS", "*") // Set the environment variable
+        .stdout(Stdio::null())
         .spawn()
         .map_err(|e| format!("Failed to start Ollama: {}", e))?;
 

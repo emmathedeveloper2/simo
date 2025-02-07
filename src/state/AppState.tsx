@@ -3,6 +3,7 @@ import { MessageItem } from "../lib/types"
 import { LanguageModelV1, streamText } from 'ai'
 import { ollama } from 'ollama-ai-provider'
 import { fetch } from '@tauri-apps/plugin-http'
+import { systemPrompt } from '../lib'
 
 interface AppState {
   models: any[]
@@ -10,6 +11,7 @@ interface AppState {
   messageInStream: string
   currentModelId: string
   currentModelRef?: LanguageModelV1
+  responseState: 'idle' | 'streaming' | 'loading' | 'success' | 'error'
 
   // Action methods
   fetchModels: () => Promise<void>
@@ -26,6 +28,7 @@ export const useAppStore = create<AppState>((set, get) => ({
   messageInStream: '',
   currentModelId: '',
   currentModelRef: undefined,
+  responseState: 'idle',
 
   fetchModels: async () => {
 
@@ -70,32 +73,37 @@ export const useAppStore = create<AppState>((set, get) => ({
       currentChat, 
       currentModelRef, 
       setCurrentChat,
+      currentModelId
     } = get()
 
     if (!currentModelRef) return
 
+    
     // Add user message
     const updatedChat = [...currentChat, { role: 'user', content: message }] as MessageItem[]
-
+    
     setCurrentChat(updatedChat)
-
+    
+    set({ responseState: 'loading' })
+    
     try {
       const { textStream, text } = streamText({
+        system: systemPrompt,
         prompt: message,
         model: currentModelRef,
       })
 
       // Stream incoming message
       for await (const chunk of textStream) {
-        set(p => ({ messageInStream: p.messageInStream + chunk }))
+        set(p => ({ responseState: 'streaming' , messageInStream: p.messageInStream + chunk }))
       }
 
       // Add full assistant message
       const fullAssistantMessage = await text
 
-      setCurrentChat([...updatedChat, { role: 'assistant', content: fullAssistantMessage }])
+      setCurrentChat([...updatedChat, { modelId: currentModelId, role: 'assistant', content: fullAssistantMessage }])
 
-      set({ messageInStream: '' })
+      set({ messageInStream: '' , responseState: 'idle' })
     } catch (error) {
       console.error('Error sending message', error)
     }
@@ -107,3 +115,4 @@ export const useModels = () => useAppStore(state => state.models)
 export const useCurrentChat = () => useAppStore(state => state.currentChat)
 export const useMessageInStream = () => useAppStore(state => state.messageInStream)
 export const useCurrentModelId = () => useAppStore(state => state.currentModelId)
+export const useResponseState = () => useAppStore(state => state.responseState)
